@@ -88,30 +88,7 @@ The HOT pipeline processes real estate listings through six explicit phases — 
 
 The address geocoding uses a candidate fallback strategy: if the most specific address fails, it retries with progressively simpler versions — from full address with street number down to city + state only. A deterministic cache key format ensures results are reused across runs without duplicating API calls.
 
-<```mermaid
-flowchart LR
-  subgraph raw[" "]
-    P01["01 · RAW<br/>R2 → data_raw<br/>Parquet + .meta.yaml"]
-  end
-
-  subgraph proc[" "]
-    P03["03 · PROCESSED<br/>Schema + validation<br/>Dedup · semantics"]
-  end
-
-  P04["04 · Geocode<br/>External API<br/><i>optional in CI</i>"]
-
-  subgraph loc[" "]
-    P04b["04-bis · Location<br/>Deterministic<br/>lat/lon · geometry"]
-  end
-
-  subgraph hot[" "]
-    P05["05 · Consolidate<br/>data_processed/hot<br/>HOT parquet gate"]
-  end
-
-  P06["06 · UPSERT<br/>PostGIS hot.*<br/><small>snapshot_id + listing_hash</small>"]
-
-  P01 --> P03 --> P04 --> P04b --> P05 --> P06
-```
+<<img width="1286" height="630" alt="image" src="https://github.com/user-attachments/assets/083472a4-7c8e-4f90-afcd-cd45ad0bbb0e" />
 >
 
 ```python
@@ -384,25 +361,8 @@ def test_robusto_scores_higher_than_fragil(profile_equilibrado):
 ---
 
 ## Architecture overview
-Data sources                  Processing                    Delivery
-─────────────────────────────────────────────────────────────────────
-GeoCuritiba (ArcGIS REST) ──► COLD pipeline ──► PostGIS (cold)
-IBGE Censo 2022 (SIDRA)   ──►               ──► PostGIS (analytics) ──► GeoJSON ──► MapLibre
-OSM (Overpass / osmnx)    ──►               ──► PostGIS (scratch)
-LiDAR (OpenTopography)    ──► height model
-                                                                         ↑
-VivaReal / APTO (scrapers) ──► HOT pipeline ──► PostGIS (hot) ──────────┘
-                                (monthly UPSERT)              (market snapshots)
-                                                                    ↓
-                                                        T02 market analysis
-                                                        T03 zoning engine       ──► dashboard
-                                                        T04 product scenarios
-```
-```mermaid
-flowchart LR
-...
-```
-```
+<img width="1274" height="648" alt="image" src="https://github.com/user-attachments/assets/5f1b282c-aeec-4647-a567-9bf0973f1fa6" />
+
 
 ---
 
