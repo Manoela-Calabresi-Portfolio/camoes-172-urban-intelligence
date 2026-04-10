@@ -87,8 +87,11 @@ def _ensure_listings_columns(df: pd.DataFrame):
 Pipeline Engineering
 Case study · 2026
 The HOT pipeline processes real estate listings through six explicit phases — each with a contract defining what it reads, what it writes, and what it is forbidden to do. No phase enriches data that belongs to a later phase. Geocoding, for example, is phase 04: it adds coordinates but is explicitly forbidden from creating geometry columns, running spatial metrics, or deduplicating records.
+
 Data collection happens in two paths depending on coverage scope. For targeted listings, a Selenium-based scraper (VivaRealSeleniumScraper) handles specific flows — though VivaReal's Cloudflare protection makes this unreliable for city-wide collection. For full-city coverage and new developments, collection runs through Bright Data Web Unlocker: the browser session runs on Bright Data's infrastructure, and the pipeline receives clean HTML back via HTTP, parsed with BeautifulSoup. This separation keeps the scraping layer honest — no pretending headless Chrome scales to thousands of listings.
+
 Raw output lands in R2 object storage as versioned Parquet files with .meta.yaml sidecar manifests. This decouples collection from processing entirely: the ETL pipeline never needs to re-scrape to reprocess. The GitHub Actions workflow (hot-full-pipeline.yml) runs on manual dispatch with explicit inputs — month reference, geocoding toggle, write confirmation — pulling RAW from R2 and running phases 03 through 06. Idempotent by design: running it twice on the same RAW produces the same PostGIS state.
+
 Address geocoding uses a candidate fallback strategy: if the most specific address fails, it retries with progressively simpler versions — from full address with street number down to city + state only. A deterministic cache key format ensures results are reused across runs without duplicating API calls.
 
 <<img width="1286" height="630" alt="image" src="https://github.com/user-attachments/assets/083472a4-7c8e-4f90-afcd-cd45ad0bbb0e" />
