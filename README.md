@@ -28,7 +28,8 @@ Two different strategies handle table updates, chosen by data type:
 - **Listings** (`hot` schema): UPSERT on `(snapshot_id, listing_hash)`. Monthly market snapshots accumulate without duplicates. A contract check fails fast before any write reaches the database.
 - **Geospatial layers** (`cold`/`scratch`): `DROP TABLE CASCADE` + full replace. Safer for layers with dependent views — dependencies are documented and recreated explicitly.
 
-<!-- IMAGE: PostGIS schema diagram or DBeaver/pgAdmin schema view -->
+<<img width="1966" height="1284" alt="image" src="https://github.com/user-attachments/assets/cc7cadad-9dac-464c-91fd-e01854626077" />
+>
 
 ```sql
 -- Zone code normalization: raw municipal codes → standard analytical zones.
@@ -156,7 +157,8 @@ The system integrates five heterogeneous data sources with different formats, pr
 
 CRS handling is config-driven: `analysis_crs` for spatial operations (SIRGAS 2000 / UTM 22S, metric), `storage_crs` for database and delivery (WGS84). Every layer is reprojected at ingestion — analysis never assumes projection.
 
-<!-- IMAGE: 3D building height map of study area, or LiDAR-derived height layer screenshot -->
+<<img width="2330" height="1204" alt="image" src="https://github.com/user-attachments/assets/072d0853-b4a2-42ee-a79d-e10ef5477599" />
+-->
 
 ```yaml
 # config.yaml — CRS configuration (no hardcoded EPSG in scripts)
@@ -218,12 +220,15 @@ def upload_layer_to_postgis(
 
 **Case study · 2026**
 
-The final output is a navigable dossiê — 12 interactive map slides covering lot parameters, urban context, morphology, market readings, regulatory envelope, and product scenarios. Built with MapLibre GL JS, consuming GeoJSON files exported from PostGIS.
+The final output is a navigable dashboard — 12 interactive map slides covering lot parameters, urban context, morphology, market readings, regulatory envelope, and product scenarios. Built with MapLibre GL JS, consuming GeoJSON files exported from PostGIS.
 
 The data flow is: PostGIS → GeoJSON export → static files → MapLibre. No tile server required. All datasets are registered in a central `DATASETS` object; the viewer resolves the correct base URL at runtime by probing for a known file — so the same build works both locally and on the production server without environment variables.
 
-<!-- IMAGE: dossiê screenshot — market map slide (hotspots + submercado) -->
-<!-- IMAGE: dossiê screenshot — product scenarios slide -->
+<img width="2764" height="1462" alt="image" src="https://github.com/user-attachments/assets/d6c2b30b-e13e-4df0-a25b-7050e2ca1ddb" />
+<img width="2770" height="1440" alt="image" src="https://github.com/user-attachments/assets/7ffeb968-a2c2-421e-8934-3c9ed6aee835" />
+<img width="2752" height="1382" alt="image" src="https://github.com/user-attachments/assets/0287e1f6-3ab9-4c2e-aaa5-77f9952dba4e" />
+
+
 
 ```javascript
 // Central dataset registry — every map layer is declared here.
@@ -285,7 +290,11 @@ Scenarios are scored per profile (defensive, balanced, scale, premium) with expl
 
 The test suite validates that hard gates fire correctly — a scenario with critical floor plate repetition (IRV < 0.5) must be flagged regardless of its other scores.
 
-<!-- IMAGE: T04 output table from dossiê showing ranked scenarios -->
+<<img width="1548" height="1102" alt="image" src="https://github.com/user-attachments/assets/14c8f5b0-43a9-48e7-92e0-1e37d22c360f" />
+>
+<img width="2770" height="1366" alt="image" src="https://github.com/user-attachments/assets/228166e8-cbac-42a0-a368-96fd750bd6a7" />
+
+
 
 ```python
 # Scenario fixtures — representative inputs to the ranking motor.
@@ -355,7 +364,7 @@ VivaReal / APTO (scrapers) ──► HOT pipeline ──► PostGIS (hot) ──
                                 (monthly UPSERT)              (market snapshots)
                                                                     ↓
                                                         T02 market analysis
-                                                        T03 zoning engine       ──► dossiê
+                                                        T03 zoning engine       ──► dashboard
                                                         T04 product scenarios
 ```
 ```mermaid
