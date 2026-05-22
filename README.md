@@ -239,6 +239,25 @@ The data flow is: PostGIS → GeoJSON export → static files → MapLibre. No t
 
 The main 2D viewer is Leaflet-based, while MapLibre stays in complementary 3D / contextual scenes.
 
+### How we use the WebGIS
+
+- It is the working surface between analysis and presentation, not just a decorative map.
+- It loads data from the dataset registry and from exported `GeoJSON` / `JSON` files.
+- It keeps the reading path stable across studies: the shell stays, only the study data and the narrative change.
+- The dossiê embeds the viewer and uses it as a live editorial layer during client delivery.
+
+### Token library
+
+- `ombu_palette_tokens.js` centralizes the Ombu color system and keeps maps, cards, labels, and panels visually coherent.
+- The same token approach can govern spacing, typography, border radii, and semantic colors across the viewer and the dossier.
+- This prevents each study from drifting into a different visual language.
+
+### Replicating the system
+
+- New studies can reuse the same viewer shell, token library, legend patterns, and interaction model.
+- In practice, we swap the datasets, map configs, and copy, while keeping the structure of the application intact.
+- That is what turns the WebGIS into a reusable framework for future case studies instead of a one-off dashboard.
+
 <img width="2764" height="1462" alt="image" src="https://github.com/user-attachments/assets/d6c2b30b-e13e-4df0-a25b-7050e2ca1ddb" />
 <img width="2770" height="1440" alt="image" src="https://github.com/user-attachments/assets/7ffeb968-a2c2-421e-8934-3c9ed6aee835" />
 <img width="2752" height="1382" alt="image" src="https://github.com/user-attachments/assets/0287e1f6-3ab9-4c2e-aaa5-77f9952dba4e" />
@@ -371,13 +390,5 @@ def test_robusto_scores_higher_than_fragil(profile_equilibrado):
     )
     assert ranking[0].scenario_id == "sc-1"  # robusto leads
 ```
-
----
-
-## Architecture overview
-<img width="1274" height="648" alt="image" src="https://github.com/user-attachments/assets/5f1b282c-aeec-4647-a567-9bf0973f1fa6" />
-
-
----
 
 *Built and maintained as part of [Ombu Lab](https://www.ombu-lab.com.br) — territorial intelligence for real estate investment decisions.*
