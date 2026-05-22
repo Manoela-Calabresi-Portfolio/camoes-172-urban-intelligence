@@ -4,15 +4,57 @@ Territorial intelligence workflow for real-estate decision-making.
 
 ![Architecture overview](https://github.com/user-attachments/assets/5f1b282c-aeec-4647-a567-9bf0973f1fa6)
 
-```mermaid
-flowchart LR
-  A[Data sources] --> B[Processing]
-  B --> C[PostGIS]
-  C --> D[GeoJSON / Analysis]
-  D --> E[MapLibre / Leaflet viewer]
-  E --> F[Dossiê editorial]
-  F --> G[Client decision]
+<details>
+<summary><strong>Runtime registry</strong> - central dataset contract used by the viewer</summary>
+
+```javascript
+// Central dataset registry — every map layer is declared here.
+// Derived datasets (block-level metrics) are computed from base GeoJSON
+// rather than stored as separate files, keeping exports minimal.
+
+const DATASETS = Object.freeze({
+  // Urban context
+  edificacoes:          { file: 'footprints_1000m.geojson' },
+  t1_03_alturas:        { file: 't1_03_building_height_02.geojson' },
+  t1_04_intensidade:    { file: 't1_04_built_density_02.geojson' },
+  t1_05_tipologias:     { file: 't1_05_morphology_type_02.geojson' },
+  zoneamento_aoi:       { file: 'zoneamento_aoi.geojson' },
+
+  // Market data (updated monthly from HOT pipeline)
+  hotspots_venda:               { file: 'hotspots_venda.geojson' },
+  hotspots_venda_basefina_novo:  { file: 'hotspots_venda_basefina_novo.geojson' },
+  s7_developments_points:        { file: 's7_developments_points.geojson' },
+  s7_market_points_total:        { file: 's7_market_points_total.geojson' },
+  aoi_submercado:                { file: 'aoi_t02_submercado_camoes.geojson' },
+
+  // Derived: block-level density computed from building footprints at runtime
+  t1_04_quadras: {
+    derived: () => buildBlockMetricGeojson({
+      dataset: 't1_04_intensidade',
+      metricFields: ['densidade_construida_m2_ha'],
+      outputField:  'densidade_construida_m2_ha'
+    })
+  },
+});
+
+// Runtime base URL resolution: probes for a known file across candidate paths.
+// Works identically in local dev (Live Server) and production (GitHub Pages / R2).
+async function getResolvedDataBase() {
+  const primary   = new URL('../../data/map_geojson/', window.location.href);
+  const candidates = [primary];
+
+  const probeFile = 'lote_camoes.geojson';
+  for (const base of candidates) {
+    const url = new URL(probeFile, base);
+    try {
+      const r = await fetch(url.href, { method: 'HEAD', cache: 'no-store' });
+      if (r.ok) { resolvedDataBase = base; return base; }
+    } catch (_) { /* try next */ }
+  }
+  return primary; // fallback — will surface 404s clearly in the network tab
+}
 ```
+</details>
 
 ## At a glance
 
