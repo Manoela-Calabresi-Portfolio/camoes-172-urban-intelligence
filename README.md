@@ -237,9 +237,9 @@ def upload_layer_to_postgis(
 
 **Case study · 2026**
 
-The final output is a navigable dashboard — 12 interactive map slides covering lot parameters, urban context, morphology, market readings, regulatory envelope, and product scenarios. Built with MapLibre GL JS, consuming GeoJSON files exported from PostGIS.
+The final output is a navigable dashboard — 12 interactive map slides covering lot parameters, urban context, morphology, market readings, regulatory envelope, and product scenarios. Built with Leaflet for the main 2D delivery, with MapLibre GL JS reserved for complementary 3D / contextual scenes.
 
-The data flow is: PostGIS → GeoJSON export → static files → MapLibre. No tile server required. All datasets are registered in a central `DATASETS` object; the viewer resolves the correct base URL at runtime by probing for a known file — so the same build works both locally and on the production server without environment variables.
+The data flow is: PostGIS → publish → GeoJSON export → static files → Leaflet. No tile server required. `publish` exposes the PostGIS views that the viewer consumes, while `Decision analysis` emits the GeoJSON and JSON artifacts used by both the Leaflet interface and the dossier. All datasets are registered in a central `DATASETS` object; the viewer resolves the correct base URL at runtime by probing for a known file — so the same build works both locally and on the production server without environment variables.
 
 The main 2D viewer is Leaflet-based, while MapLibre stays in complementary 3D / contextual scenes.
 
@@ -249,6 +249,7 @@ The main 2D viewer is Leaflet-based, while MapLibre stays in complementary 3D / 
 - It loads data from the dataset registry and from exported `GeoJSON` / `JSON` files.
 - It keeps the reading path stable across studies: the shell stays, only the study data and the narrative change.
 - The dossiê embeds the viewer and uses it as a live editorial layer during client delivery.
+- In practice, `publish` is the handoff point between the analytical database and the viewer, and the decision layer can emit new outputs without changing the front-end shell.
 
 ### Token library
 

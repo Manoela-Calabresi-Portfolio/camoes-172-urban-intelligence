@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
   <title id="title">Camões 172 system overview</title>
-  <desc id="desc">Data sources feed the COLD and HOT pipelines, PostGIS stores and structures layers, GeoJSON feeds the Leaflet viewer and MapLibre scenes, and the dossier wraps everything for client delivery.</desc>
+  <desc id="desc">Data sources feed the COLD and HOT pipelines, PostGIS stores and publishes layers, GeoJSON feeds the Leaflet viewer and MapLibre scenes, and the dossier wraps everything for client delivery.</desc>
   <defs>
     <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="strokeWidth">
       <path d="M 0 0 L 12 6 L 0 12 z" fill="#9b8f81"/>
@@ -85,36 +85,41 @@
   <text class="boxSub" x="800" y="460" text-anchor="middle">market snapshots</text>
 
   <!-- analysis -->
-  <rect class="grey" x="960" y="142" rx="15" ry="15" width="182" height="64"/>
-  <text class="boxTitle" x="1051" y="179" text-anchor="middle">GeoJSON</text>
+  <rect class="grey" x="980" y="142" rx="15" ry="15" width="110" height="64"/>
+  <text class="boxTitle" x="1035" y="175" text-anchor="middle">publish</text>
+  <text class="boxSub" x="1035" y="194" text-anchor="middle">views / GeoJSON</text>
 
-  <rect class="panel" x="950" y="352" rx="18" ry="18" width="275" height="210"/>
-  <text class="label" x="967" y="380">Decision analysis</text>
+  <rect class="grey" x="1120" y="142" rx="15" ry="15" width="182" height="64"/>
+  <text class="boxTitle" x="1211" y="175" text-anchor="middle">GeoJSON</text>
+  <text class="boxSub" x="1211" y="194" text-anchor="middle">layers + JSON config</text>
 
-  <rect class="orange" x="972" y="404" rx="14" ry="14" width="231" height="42"/>
-  <text class="boxTitle" x="1087" y="431" text-anchor="middle" fill="#b56c3f">T02</text>
-  <text class="tiny" x="1087" y="446" text-anchor="middle">market analysis</text>
+  <rect class="panel" x="990" y="360" rx="18" ry="18" width="265" height="202"/>
+  <text class="label" x="1007" y="388">Decision analysis</text>
 
-  <rect class="orange" x="972" y="455" rx="14" ry="14" width="231" height="42"/>
-  <text class="boxTitle" x="1087" y="482" text-anchor="middle" fill="#b56c3f">T03</text>
-  <text class="tiny" x="1087" y="497" text-anchor="middle">zoning engine</text>
+  <rect class="orange" x="1012" y="410" rx="14" ry="14" width="211" height="40"/>
+  <text class="boxTitle" x="1117" y="435" text-anchor="middle" fill="#b56c3f">T02</text>
+  <text class="tiny" x="1117" y="449" text-anchor="middle">market analysis</text>
 
-  <rect class="orange" x="972" y="506" rx="14" ry="14" width="231" height="42"/>
-  <text class="boxTitle" x="1087" y="533" text-anchor="middle" fill="#b56c3f">T04</text>
-  <text class="tiny" x="1087" y="548" text-anchor="middle">product scenarios</text>
+  <rect class="orange" x="1012" y="458" rx="14" ry="14" width="211" height="40"/>
+  <text class="boxTitle" x="1117" y="483" text-anchor="middle" fill="#b56c3f">T03</text>
+  <text class="tiny" x="1117" y="497" text-anchor="middle">zoning engine</text>
+
+  <rect class="orange" x="1012" y="506" rx="14" ry="14" width="211" height="40"/>
+  <text class="boxTitle" x="1117" y="531" text-anchor="middle" fill="#b56c3f">T04</text>
+  <text class="tiny" x="1117" y="545" text-anchor="middle">product scenarios</text>
 
   <!-- delivery -->
-  <rect class="green2" x="1270" y="132" rx="15" ry="15" width="240" height="68"/>
-  <text class="boxTitle" x="1390" y="166" text-anchor="middle">Leaflet</text>
-  <text class="boxSub" x="1390" y="186" text-anchor="middle">2D viewer / client delivery</text>
+  <rect class="green2" x="1320" y="132" rx="15" ry="15" width="230" height="68"/>
+  <text class="boxTitle" x="1435" y="166" text-anchor="middle">Leaflet</text>
+  <text class="boxSub" x="1435" y="186" text-anchor="middle">2D viewer / client delivery</text>
 
-  <rect class="green" x="1270" y="244" rx="15" ry="15" width="240" height="68"/>
-  <text class="boxTitle" x="1390" y="278" text-anchor="middle">MapLibre</text>
-  <text class="boxSub" x="1390" y="298" text-anchor="middle">3D / complement scenes</text>
+  <rect class="green" x="1320" y="244" rx="15" ry="15" width="230" height="68"/>
+  <text class="boxTitle" x="1435" y="278" text-anchor="middle">MapLibre</text>
+  <text class="boxSub" x="1435" y="298" text-anchor="middle">3D / complement scenes</text>
 
-  <rect class="grey" x="1270" y="408" rx="15" ry="15" width="240" height="68"/>
-  <text class="boxTitle" x="1390" y="442" text-anchor="middle">dossiê</text>
-  <text class="boxSub" x="1390" y="462" text-anchor="middle">client delivery</text>
+  <rect class="grey" x="1320" y="408" rx="15" ry="15" width="230" height="68"/>
+  <text class="boxTitle" x="1435" y="442" text-anchor="middle">dossiê</text>
+  <text class="boxSub" x="1435" y="462" text-anchor="middle">client delivery</text>
 
   <!-- connectors: sources to processing -->
   <path class="line" d="M 365 118 L 390 118 L 390 166 L 410 166"/>
@@ -133,29 +138,32 @@
   <path class="lineSoft" d="M 800 218 L 800 228"/>
 
   <!-- PostGIS to GeoJSON -->
-  <path class="line" d="M 920 124 L 944 124 L 944 174 L 960 174"/>
-  <path class="line" d="M 920 190 L 944 190 L 944 174 L 960 174"/>
-  <path class="line" d="M 920 256 L 944 256 L 944 174 L 960 174"/>
-  <path class="line" d="M 920 442 L 944 442 L 944 174 L 960 174"/>
+  <path class="line" d="M 920 124 L 960 124 L 960 174 L 980 174"/>
+  <path class="line" d="M 920 190 L 960 190 L 960 174 L 980 174"/>
+  <path class="line" d="M 920 256 L 960 256 L 960 174 L 980 174"/>
+  <path class="line" d="M 920 442 L 960 442 L 960 174 L 980 174"/>
+
+  <!-- publish to GeoJSON -->
+  <path class="line" d="M 1090 174 L 1120 174"/>
 
   <!-- GeoJSON to delivery -->
-  <path class="line" d="M 1142 174 L 1268 174"/>
-  <path class="lineDotted" d="M 1142 174 L 1268 278"/>
+  <path class="line" d="M 1302 174 L 1320 174"/>
+  <path class="lineDotted" d="M 1302 174 L 1320 278"/>
 
   <!-- GeoJSON + hot to analysis -->
-  <path class="lineSoft" d="M 1051 206 L 1051 352"/>
-  <path class="lineSoft" d="M 920 442 L 944 442 L 944 438 L 972 438"/>
-  <path class="lineSoft" d="M 920 442 L 944 442 L 944 489 L 972 489"/>
-  <path class="lineSoft" d="M 920 442 L 944 442 L 944 540 L 972 540"/>
+  <path class="lineSoft" d="M 1211 206 L 1211 360"/>
+  <path class="lineSoft" d="M 920 442 L 960 442 L 960 430 L 1012 430"/>
+  <path class="lineSoft" d="M 920 442 L 960 442 L 960 478 L 1012 478"/>
+  <path class="lineSoft" d="M 920 442 L 960 442 L 960 526 L 1012 526"/>
 
   <!-- delivery to dossier -->
-  <path class="line" d="M 1510 166 L 1538 166 L 1538 442 L 1510 442"/>
-  <path class="lineSoft" d="M 1510 278 L 1538 278 L 1538 442 L 1510 442"/>
+  <path class="line" d="M 1550 166 L 1578 166 L 1578 442 L 1550 442"/>
+  <path class="lineSoft" d="M 1550 278 L 1578 278 L 1578 442 L 1550 442"/>
 
   <!-- analysis to dossier -->
-  <path class="line" d="M 1225 457 L 1268 457"/>
+  <path class="line" d="M 1260 457 L 1320 457"/>
 
   <!-- footer note -->
-  <text class="small" x="80" y="804">Data sources → processing → PostGIS → GeoJSON → Leaflet viewer → dossiê editorial → client decision</text>
+  <text class="small" x="80" y="804">Data sources → processing → PostGIS → publish → GeoJSON → Leaflet viewer → dossiê editorial → client decision</text>
   <text class="tiny" x="80" y="826">MapLibre stays complementary: useful for 3D / contextual scenes, not the main 2D route.</text>
 </svg>
