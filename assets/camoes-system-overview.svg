@@ -1,158 +1,152 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="860" viewBox="0 0 1600 860" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
   <title id="title">Camões 172 system overview</title>
-  <desc id="desc">Data sources flow into COLD and HOT pipelines, then into PostGIS, GeoJSON analysis, Leaflet 2D viewer, MapLibre complementary scenes, and the editorial dossier for client delivery.</desc>
+  <desc id="desc">Data sources flow into the COLD and HOT pipelines, then into PostGIS, GeoJSON analysis, the Leaflet 2D viewer, complementary MapLibre scenes, and the editorial dossier for client delivery.</desc>
   <defs>
-    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8E857A"/>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#9B8F81"/>
     </marker>
-    <marker id="arrowSoft" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#B7AF9E"/>
+    <marker id="arrowSoft" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#C0B6A7"/>
     </marker>
     <style>
       .bg { fill: #fbfaf7; }
-      .label { font: 600 18px/1.2 "Manrope", Arial, sans-serif; fill: #908a83; letter-spacing: .01em; }
-      .boxTitle { font: 700 22px/1.2 "Manrope", Arial, sans-serif; fill: #3a3a36; }
-      .boxSub { font: 500 14px/1.2 "Manrope", Arial, sans-serif; fill: #968f86; }
-      .small { font: 600 13px/1.2 "Manrope", Arial, sans-serif; fill: #726d66; }
-      .tiny { font: 500 12px/1.2 "Manrope", Arial, sans-serif; fill: #98938b; }
-      .green { fill: #e8f4ee; stroke: #6fb08b; }
-      .green2 { fill: #edf8f2; stroke: #80b898; }
-      .lav { fill: #eef0ff; stroke: #8b8fee; }
-      .orange { fill: #f8efe5; stroke: #de9d4b; }
-      .grey { fill: #f4f2ec; stroke: #c5c0b7; }
-      .line { stroke: #8e857a; stroke-width: 2.2; fill: none; marker-end: url(#arrow); }
-      .lineSoft { stroke: #b7af9e; stroke-width: 2; fill: none; marker-end: url(#arrowSoft); }
-      .lineDotted { stroke: #b7af9e; stroke-width: 2; fill: none; stroke-dasharray: 7 6; marker-end: url(#arrowSoft); }
+      .label { font: 700 18px/1.2 "Manrope", Arial, sans-serif; fill: #9a9187; letter-spacing: .01em; }
+      .boxTitle { font: 800 21px/1.2 "Manrope", Arial, sans-serif; fill: #2f2b28; }
+      .boxSub { font: 500 13px/1.2 "Manrope", Arial, sans-serif; fill: #8f887f; }
+      .small { font: 700 13px/1.2 "Manrope", Arial, sans-serif; fill: #6f675d; }
+      .tiny { font: 500 11px/1.2 "Manrope", Arial, sans-serif; fill: #9b948a; }
+      .green { fill: #edf6f0; stroke: #7db291; }
+      .green2 { fill: #eef8f3; stroke: #91bf9f; }
+      .lav { fill: #eef0ff; stroke: #9799ef; }
+      .orange { fill: #f8efe5; stroke: #e2a252; }
+      .grey { fill: #f4f2ec; stroke: #c6c0b7; }
+      .line { stroke: #9b8f81; stroke-width: 2.5; fill: none; marker-end: url(#arrow); stroke-linecap: round; stroke-linejoin: round; }
+      .lineSoft { stroke: #c0b6a7; stroke-width: 2.1; fill: none; marker-end: url(#arrowSoft); stroke-linecap: round; stroke-linejoin: round; }
+      .lineDotted { stroke: #c0b6a7; stroke-width: 2.1; fill: none; stroke-dasharray: 7 6; marker-end: url(#arrowSoft); stroke-linecap: round; stroke-linejoin: round; }
     </style>
   </defs>
 
-  <rect class="bg" x="0" y="0" width="1600" height="860" rx="28"/>
+  <rect class="bg" x="0" y="0" width="1600" height="900" rx="28"/>
 
   <!-- Column labels -->
-  <text class="label" x="125" y="64">Data sources</text>
-  <text class="label" x="390" y="64">Processing</text>
-  <text class="label" x="650" y="64">PostGIS</text>
-  <text class="label" x="915" y="64">Analysis</text>
-  <text class="label" x="1290" y="64">Delivery</text>
+  <text class="label" x="126" y="62">Data sources</text>
+  <text class="label" x="390" y="62">Processing</text>
+  <text class="label" x="660" y="62">PostGIS</text>
+  <text class="label" x="940" y="62">Analysis</text>
+  <text class="label" x="1290" y="62">Delivery</text>
 
-  <!-- Left column: sources -->
-  <rect class="green" x="80" y="96" rx="12" ry="12" width="285" height="48"/>
-  <text class="boxTitle" x="222" y="124" text-anchor="middle">GeoCuritiba</text>
-  <text class="tiny" x="222" y="141" text-anchor="middle">ArcGIS REST</text>
+  <!-- Data sources -->
+  <rect class="green" x="80" y="94" rx="13" ry="13" width="285" height="48"/>
+  <text class="boxTitle" x="222" y="123" text-anchor="middle">GeoCuritiba</text>
+  <text class="tiny" x="222" y="140" text-anchor="middle">ArcGIS REST</text>
 
-  <rect class="green" x="80" y="154" rx="12" ry="12" width="285" height="48"/>
-  <text class="boxTitle" x="222" y="182" text-anchor="middle">IBGE Censo 2022</text>
-  <text class="tiny" x="222" y="199" text-anchor="middle">SIDRA API</text>
+  <rect class="green" x="80" y="152" rx="13" ry="13" width="285" height="48"/>
+  <text class="boxTitle" x="222" y="181" text-anchor="middle">IBGE Censo 2022</text>
+  <text class="tiny" x="222" y="198" text-anchor="middle">SIDRA API</text>
 
-  <rect class="green" x="80" y="212" rx="12" ry="12" width="285" height="48"/>
-  <text class="boxTitle" x="222" y="240" text-anchor="middle">OSM</text>
-  <text class="tiny" x="222" y="257" text-anchor="middle">Overpass / osmnx</text>
+  <rect class="green" x="80" y="210" rx="13" ry="13" width="285" height="48"/>
+  <text class="boxTitle" x="222" y="239" text-anchor="middle">OSM</text>
+  <text class="tiny" x="222" y="256" text-anchor="middle">Overpass / osmnx</text>
 
-  <rect class="grey" x="80" y="318" rx="12" ry="12" width="285" height="48"/>
-  <text class="boxTitle" x="222" y="346" text-anchor="middle">LiDAR</text>
-  <text class="tiny" x="222" y="363" text-anchor="middle">OpenTopography</text>
+  <rect class="grey" x="80" y="316" rx="13" ry="13" width="285" height="48"/>
+  <text class="boxTitle" x="222" y="345" text-anchor="middle">LiDAR</text>
+  <text class="tiny" x="222" y="362" text-anchor="middle">OpenTopography</text>
 
-  <rect class="orange" x="80" y="470" rx="12" ry="12" width="285" height="48"/>
-  <text class="boxTitle" x="222" y="498" text-anchor="middle">VivaReal / APTO</text>
-  <text class="tiny" x="222" y="515" text-anchor="middle">web scraping</text>
+  <rect class="orange" x="80" y="468" rx="13" ry="13" width="285" height="48"/>
+  <text class="boxTitle" x="222" y="497" text-anchor="middle">VivaReal / APTO</text>
+  <text class="tiny" x="222" y="514" text-anchor="middle">web scraping</text>
 
   <!-- Processing -->
-  <rect class="green2" x="410" y="132" rx="14" ry="14" width="260" height="72"/>
-  <text class="boxTitle" x="540" y="174" text-anchor="middle">COLD pipeline</text>
-  <text class="boxSub" x="540" y="193" text-anchor="middle">ingestão + refino espacial</text>
+  <rect class="green2" x="410" y="130" rx="15" ry="15" width="260" height="72"/>
+  <text class="boxTitle" x="540" y="171" text-anchor="middle">COLD pipeline</text>
+  <text class="boxSub" x="540" y="190" text-anchor="middle">ingestão + refino espacial</text>
 
-  <rect class="orange" x="410" y="330" rx="14" ry="14" width="260" height="72"/>
-  <text class="boxTitle" x="540" y="372" text-anchor="middle">HOT pipeline</text>
-  <text class="boxSub" x="540" y="391" text-anchor="middle">monthly UPSERT</text>
+  <rect class="grey" x="410" y="260" rx="15" ry="15" width="260" height="72"/>
+  <text class="boxTitle" x="540" y="301" text-anchor="middle">height model</text>
+  <text class="boxSub" x="540" y="320" text-anchor="middle">LiDAR → volumetria</text>
 
-  <rect class="grey" x="410" y="258" rx="14" ry="14" width="260" height="72"/>
-  <text class="boxTitle" x="540" y="300" text-anchor="middle">height model</text>
-  <text class="boxSub" x="540" y="319" text-anchor="middle">LiDAR → volumetria</text>
+  <rect class="orange" x="410" y="378" rx="15" ry="15" width="260" height="72"/>
+  <text class="boxTitle" x="540" y="419" text-anchor="middle">HOT pipeline</text>
+  <text class="boxSub" x="540" y="438" text-anchor="middle">monthly UPSERT</text>
 
   <!-- PostGIS -->
-  <rect class="lav" x="680" y="100" rx="14" ry="14" width="240" height="56"/>
-  <text class="boxTitle" x="800" y="133" text-anchor="middle" fill="#4b4aa2">cold</text>
+  <rect class="lav" x="680" y="96" rx="15" ry="15" width="240" height="56"/>
+  <text class="boxTitle" x="800" y="129" text-anchor="middle" fill="#47459a">cold</text>
 
-  <rect class="lav" x="680" y="166" rx="14" ry="14" width="240" height="56"/>
-  <text class="boxTitle" x="800" y="199" text-anchor="middle" fill="#4b4aa2">analytics</text>
+  <rect class="lav" x="680" y="162" rx="15" ry="15" width="240" height="56"/>
+  <text class="boxTitle" x="800" y="195" text-anchor="middle" fill="#47459a">analytics</text>
 
-  <rect class="lav" x="680" y="232" rx="14" ry="14" width="240" height="56"/>
-  <text class="boxTitle" x="800" y="265" text-anchor="middle" fill="#4b4aa2">scratch</text>
+  <rect class="lav" x="680" y="228" rx="15" ry="15" width="240" height="56"/>
+  <text class="boxTitle" x="800" y="261" text-anchor="middle" fill="#47459a">scratch</text>
 
-  <rect class="lav" x="680" y="422" rx="14" ry="14" width="240" height="56"/>
-  <text class="boxTitle" x="800" y="455" text-anchor="middle" fill="#4b4aa2">hot</text>
-  <text class="boxSub" x="800" y="474" text-anchor="middle">market snapshots</text>
+  <rect class="lav" x="680" y="408" rx="15" ry="15" width="240" height="56"/>
+  <text class="boxTitle" x="800" y="441" text-anchor="middle" fill="#47459a">hot</text>
+  <text class="boxSub" x="800" y="460" text-anchor="middle">market snapshots</text>
 
   <!-- Analysis -->
-  <rect class="grey" x="960" y="148" rx="14" ry="14" width="182" height="64"/>
-  <text class="boxTitle" x="1051" y="185" text-anchor="middle">GeoJSON</text>
+  <rect class="grey" x="960" y="142" rx="15" ry="15" width="182" height="64"/>
+  <text class="boxTitle" x="1051" y="179" text-anchor="middle">GeoJSON</text>
 
-  <rect class="orange" x="985" y="356" rx="14" ry="14" width="208" height="62"/>
-  <text class="boxTitle" x="1099" y="389" text-anchor="middle" fill="#b56c3f">T02</text>
-  <text class="tiny" x="1099" y="408" text-anchor="middle">market analysis</text>
+  <rect class="orange" x="980" y="360" rx="15" ry="15" width="210" height="60"/>
+  <text class="boxTitle" x="1085" y="394" text-anchor="middle" fill="#b56c3f">T02</text>
+  <text class="tiny" x="1085" y="412" text-anchor="middle">market analysis</text>
 
-  <rect class="orange" x="985" y="426" rx="14" ry="14" width="208" height="62"/>
-  <text class="boxTitle" x="1099" y="459" text-anchor="middle" fill="#b56c3f">T03</text>
-  <text class="tiny" x="1099" y="478" text-anchor="middle">zoning engine</text>
+  <rect class="orange" x="980" y="430" rx="15" ry="15" width="210" height="60"/>
+  <text class="boxTitle" x="1085" y="464" text-anchor="middle" fill="#b56c3f">T03</text>
+  <text class="tiny" x="1085" y="482" text-anchor="middle">zoning engine</text>
 
-  <rect class="orange" x="985" y="496" rx="14" ry="14" width="208" height="62"/>
-  <text class="boxTitle" x="1099" y="529" text-anchor="middle" fill="#b56c3f">T04</text>
-  <text class="tiny" x="1099" y="548" text-anchor="middle">product scenarios</text>
+  <rect class="orange" x="980" y="500" rx="15" ry="15" width="210" height="60"/>
+  <text class="boxTitle" x="1085" y="534" text-anchor="middle" fill="#b56c3f">T04</text>
+  <text class="tiny" x="1085" y="552" text-anchor="middle">product scenarios</text>
 
   <!-- Delivery -->
-  <rect class="green2" x="1265" y="144" rx="14" ry="14" width="240" height="68"/>
-  <text class="boxTitle" x="1385" y="178" text-anchor="middle">Leaflet</text>
-  <text class="boxSub" x="1385" y="198" text-anchor="middle">2D viewer / client delivery</text>
+  <rect class="green2" x="1272" y="132" rx="15" ry="15" width="240" height="68"/>
+  <text class="boxTitle" x="1392" y="166" text-anchor="middle">Leaflet</text>
+  <text class="boxSub" x="1392" y="186" text-anchor="middle">2D viewer / client delivery</text>
 
-  <rect class="green" x="1265" y="262" rx="14" ry="14" width="240" height="68"/>
-  <text class="boxTitle" x="1385" y="296" text-anchor="middle">MapLibre</text>
-  <text class="boxSub" x="1385" y="316" text-anchor="middle">3D / complement scenes</text>
+  <rect class="green" x="1272" y="244" rx="15" ry="15" width="240" height="68"/>
+  <text class="boxTitle" x="1392" y="278" text-anchor="middle">MapLibre</text>
+  <text class="boxSub" x="1392" y="298" text-anchor="middle">3D / complement scenes</text>
 
-  <rect class="grey" x="1265" y="406" rx="14" ry="14" width="240" height="68"/>
-  <text class="boxTitle" x="1385" y="440" text-anchor="middle">dossiê</text>
-  <text class="boxSub" x="1385" y="460" text-anchor="middle">client delivery</text>
+  <rect class="grey" x="1272" y="402" rx="15" ry="15" width="240" height="68"/>
+  <text class="boxTitle" x="1392" y="436" text-anchor="middle">dossiê</text>
+  <text class="boxSub" x="1392" y="456" text-anchor="middle">client delivery</text>
 
-  <!-- connectors: sources -> processing -->
-  <path class="line" d="M 365 120 L 390 120 L 390 168 L 410 168"/>
-  <path class="line" d="M 365 178 L 390 178"/>
-  <path class="line" d="M 365 236 L 390 236 L 390 168 L 410 168"/>
-  <path class="lineSoft" d="M 365 342 L 390 342 L 390 294 L 410 294"/>
-  <path class="line" d="M 365 494 L 390 494 L 390 366 L 410 366"/>
+  <!-- connectors -->
+  <!-- data sources -> processing -->
+  <path class="line" d="M 365 118 L 392 118 L 392 166 L 410 166"/>
+  <path class="line" d="M 365 176 L 392 176"/>
+  <path class="line" d="M 365 234 L 392 234 L 392 166 L 410 166"/>
+  <path class="lineSoft" d="M 365 340 L 392 340 L 392 296 L 410 296"/>
+  <path class="line" d="M 365 492 L 392 492 L 392 414 L 410 414"/>
 
   <!-- processing -> postgis -->
-  <path class="line" d="M 670 168 L 680 168"/>
-  <path class="lineSoft" d="M 670 294 L 680 294 L 680 128 L 680 128"/>
-  <path class="line" d="M 670 366 L 680 366 L 680 260 L 680 260"/>
-  <path class="line" d="M 670 366 L 680 366 L 680 450 L 680 450"/>
+  <path class="line" d="M 670 166 L 680 166"/>
+  <path class="line" d="M 670 296 L 680 296 L 680 124 L 680 124"/>
+  <path class="line" d="M 670 414 L 680 414 L 680 442 L 680 442"/>
 
-  <!-- postgis internal -->
-  <path class="lineSoft" d="M 800 156 L 800 166"/>
-  <path class="lineSoft" d="M 800 222 L 800 232"/>
+  <!-- postgis internal stack -->
+  <path class="lineSoft" d="M 800 152 L 800 162"/>
+  <path class="lineSoft" d="M 800 218 L 800 228"/>
 
-  <!-- postgis -> analysis / delivery -->
-  <path class="line" d="M 920 128 L 944 128 L 944 180 L 960 180"/>
-  <path class="line" d="M 920 194 L 948 194 L 948 180 L 960 180"/>
-  <path class="line" d="M 920 260 L 944 260 L 944 180 L 960 180"/>
-  <path class="line" d="M 920 450 L 944 450 L 944 180 L 960 180"/>
+  <!-- postgis -> analysis -->
+  <path class="line" d="M 920 124 L 944 124 L 944 174 L 960 174"/>
+  <path class="line" d="M 920 190 L 944 190 L 944 174 L 960 174"/>
+  <path class="line" d="M 920 256 L 944 256 L 944 174 L 960 174"/>
+  <path class="line" d="M 920 442 L 944 442 L 944 174 L 960 174"/>
 
-  <path class="line" d="M 1147 387 L 1220 387 L 1220 178 L 1265 178"/>
-  <path class="lineSoft" d="M 1147 457 L 1212 457 L 1212 296 L 1265 296"/>
-  <path class="line" d="M 1147 527 L 1212 527 L 1212 440 L 1265 440"/>
+  <!-- analysis -> viewer / decision -->
+  <path class="line" d="M 1142 174 L 1230 174 L 1230 166 L 1272 166"/>
+  <path class="lineDotted" d="M 1142 174 L 1230 174 L 1230 278 L 1272 278"/>
+  <path class="line" d="M 1142 174 L 1160 174 L 1160 390 L 980 390"/>
+  <path class="lineSoft" d="M 1142 174 L 1160 174 L 1160 460 L 980 460"/>
+  <path class="lineSoft" d="M 1142 174 L 1160 174 L 1160 530 L 980 530"/>
 
-  <!-- analysis to delivery -->
-  <path class="lineSoft" d="M 1142 180 L 1218 180"/>
-  <path class="lineDotted" d="M 1142 180 L 1218 296"/>
-
-  <!-- postgis/analysis to T02-T04 -->
-  <path class="lineSoft" d="M 960 180 L 960 387 L 985 387"/>
-  <path class="lineSoft" d="M 960 180 L 960 457 L 985 457"/>
-  <path class="lineSoft" d="M 960 180 L 960 527 L 985 527"/>
-
-  <!-- delivery to dossiê -->
-  <path class="line" d="M 1505 178 L 1515 178 L 1515 440 L 1505 440"/>
-  <path class="lineSoft" d="M 1505 296 L 1515 296 L 1515 440 L 1505 440"/>
+  <!-- viewer -> dossier -->
+  <path class="line" d="M 1512 166 L 1540 166 L 1540 436 L 1512 436"/>
+  <path class="lineSoft" d="M 1512 278 L 1540 278 L 1540 436 L 1512 436"/>
 
   <!-- footer note -->
-  <text class="small" x="80" y="790">Data sources → processing → PostGIS → GeoJSON → Leaflet viewer → dossiê editorial → client decision</text>
-  <text class="tiny" x="80" y="812">MapLibre is complementary, used for 3D / contextual scenes rather than the main 2D route.</text>
+  <text class="small" x="80" y="804">Data sources → processing → PostGIS → GeoJSON → Leaflet viewer → dossiê editorial → client decision</text>
+  <text class="tiny" x="80" y="826">MapLibre stays complementary: useful for 3D / contextual scenes, not the main 2D route.</text>
 </svg>
