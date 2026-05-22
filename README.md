@@ -3,6 +3,10 @@
 > End-to-end geospatial data system for real estate product decisions.  
 > From raw municipal data to interactive client delivery — built as the technical foundation of [Ombu Lab](https://www.instagram.com/ombu_lab/), a territorial intelligence consultancy in Curitiba, Brazil.
 
+In practice, this means the project takes territorial and market data, organizes it in PostGIS, turns the relevant layers into a web viewer, and packages the result into a client-ready dossier that supports product, scale, and positioning decisions.
+
+It is an end-to-end workflow because the same system covers data ingestion, spatial analysis, map delivery, and editorial presentation in one repeatable pipeline.
+
 **Stack:** Python · PostGIS · GeoPandas · MapLibre GL JS · GeoParquet · IBGE SIDRA API · GeoCuritiba (ArcGIS REST) · OSM Overpass · LiDAR
 
 ---
