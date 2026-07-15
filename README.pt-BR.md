@@ -29,6 +29,26 @@ Como transformar dados urbanos, regulatórios, censitários e de mercado em uma 
 - LiDAR;
 - listings de mercado.
 
+## Coleta de dados
+
+O caso não parte de uma única base. Ele consolida fluxos diferentes de coleta e atualização:
+
+| Fonte | Como entra | O que alimenta |
+|---|---|---|
+| GeoCuritiba / ArcGIS REST | download estruturado por camadas e serviços municipais | cadastro, zoneamento, transporte e contexto urbano |
+| IBGE / SIDRA | consulta por API e seleção de tabelas | renda, domicílio, escolaridade e leitura censitária |
+| OpenStreetMap | extração por Overpass e processamento espacial | rede, POIs, edificações e suporte à acessibilidade |
+| LiDAR | ingestão de DSM/DTM | modelagem de alturas e morfologia |
+| Mercado | coleta de listings e snapshots mensais | preço, oferta, tipologia e leitura de produto |
+
+Em termos práticos, o sistema coleta:
+
+- dados regulatórios e cadastrais;
+- infraestrutura e rede urbana;
+- dados censitários;
+- dados físicos do tecido construído;
+- dados dinâmicos de mercado.
+
 ## Fluxo do sistema
 
 ```mermaid
@@ -58,6 +78,38 @@ O sistema opera com lógica HOT/COLD. Listings entram por pipeline próprio, com
 
 ![Fluxo de pipeline e coleta](https://github.com/user-attachments/assets/083472a4-7c8e-4f90-afcd-cd45ad0bbb0e)
 
+### Fluxos coletados
+
+**Fluxo 1 · Territorial público**
+
+- coleta de camadas municipais;
+- normalização espacial;
+- persistência em banco para cruzamentos regulatórios e urbanos.
+
+**Fluxo 2 · Censitário**
+
+- busca e seleção de tabelas no SIDRA;
+- integração de variáveis censitárias;
+- uso como base para indicadores territoriais.
+
+**Fluxo 3 · OSM**
+
+- extração de rede, POIs e edificações;
+- organização em camadas reutilizáveis;
+- apoio a leitura de acessibilidade e contexto urbano.
+
+**Fluxo 4 · LiDAR**
+
+- entrada de superfícies e elevação;
+- derivação de alturas e intensidade construída;
+- suporte a leitura morfológica.
+
+**Fluxo 5 · Mercado**
+
+- coleta de listings por snapshot;
+- histórico consistente com UPSERT;
+- base para leitura de preço, oferta e produto.
+
 O que este bloco entrega:
 
 - atualização confiável de dados de mercado;
@@ -82,11 +134,36 @@ Fontes que entram aqui:
 
 O resultado não fica só no banco. As camadas analíticas viram visualizador navegável e dossiê editorial para leitura do caso.
 
+### Recortes de mapa
+
+#### Mapa de demanda
+
+![Mapa de demanda](assets/mapa_s6_demanda.png)
+
+#### Mapa de submercado
+
+![Mapa de submercado](assets/mapa_s6_submercado.png)
+
+Esses recortes mostram o tipo de leitura que o WebGIS permite:
+
+- demanda territorial;
+- submercados;
+- relações entre produto, estrutura urbana e contexto regulatório.
+
 ![WebGIS Camões 172 · vista 1](https://github.com/user-attachments/assets/d6c2b30b-e13e-4df0-a25b-7050e2ca1ddb)
 
 ![WebGIS Camões 172 · vista 2](https://github.com/user-attachments/assets/7ffeb968-a2c2-421e-8934-3c9ed6aee835)
 
 ![WebGIS Camões 172 · vista 3](https://github.com/user-attachments/assets/0287e1f6-3ab9-4c2e-aaa5-77f9952dba4e)
+
+### Ênfase no WebGIS
+
+O WebGIS não é uma camada decorativa. Ele é a superfície de trabalho entre análise e apresentação:
+
+- organiza a leitura espacial em sequências comparáveis;
+- permite navegar entre demanda, submercado, morfologia, envelope regulatório e mercado;
+- traduz visões do banco em mapas utilizáveis por cliente e equipe;
+- mantém a mesma lógica de navegação em novos estudos.
 
 O que este bloco entrega:
 
