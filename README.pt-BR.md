@@ -96,13 +96,13 @@ O sistema opera com lógica HOT/COLD. Listings entram por pipeline próprio, com
 
 - extração de rede, POIs e edificações;
 - organização em camadas reutilizáveis;
-- apoio a leitura de acessibilidade e contexto urbano.
+- apoio à leitura de acessibilidade e contexto urbano.
 
 **Fluxo 4 · LiDAR**
 
 - entrada de superfícies e elevação;
 - derivação de alturas e intensidade construída;
-- suporte a leitura morfológica.
+- suporte à leitura morfológica.
 
 **Fluxo 5 · Mercado**
 
@@ -136,19 +136,30 @@ O resultado não fica só no banco. As camadas analíticas viram visualizador na
 
 ### Recortes de mapa
 
-#### Mapa de demanda
+#### 1. Demanda territorial
 
-![Mapa de demanda](assets/mapa_s6_demanda.png)
+![Mapa de demanda territorial](assets/camoes-demanda-territorial.png)
 
-#### Mapa de submercado
+Este mapa mostra onde o mercado absorve um produto com mais facilidade e onde passa a exigir maior precisão de preço, tipologia e posicionamento.
 
-![Mapa de submercado](assets/mapa_s6_submercado.png)
+#### 2. Recorte competitivo
 
-Esses recortes mostram o tipo de leitura que o WebGIS permite:
+![Mapa de recorte competitivo](assets/camoes-recorte-competitivo.png)
 
-- demanda territorial;
-- submercados;
-- relações entre produto, estrutura urbana e contexto regulatório.
+Este recorte mostra o campo real de concorrência do lote: quadras comparáveis, bordas territoriais, relações de zoneamento e referências que estruturam o mesmo jogo competitivo.
+
+#### 3. Usados no submercado
+
+![Mapa de usados no submercado](assets/camoes-usados.png)
+
+Esta leitura mostra onde o estoque usado já aparece com mais presença e onde o mercado já foi testado, ajudando a entender referência de preço e consolidação de oferta dentro do submercado.
+
+Essas três leituras deixam claro como o WebGIS funciona:
+
+- o `recorte competitivo` define o campo onde o lote realmente compete;
+- a `demanda territorial` mostra onde esse campo está mais fluido ou mais exigente;
+- a camada de `usados` ajuda a ler onde o mercado já foi validado;
+- juntas, elas conectam território, mercado e decisão de produto.
 
 ![WebGIS Camões 172 · vista 1](https://github.com/user-attachments/assets/d6c2b30b-e13e-4df0-a25b-7050e2ca1ddb)
 
@@ -187,7 +198,7 @@ O que este bloco entrega:
 
 - sistema replicável de inteligência territorial;
 - integração entre censo, mercado e geografia urbana;
-- apoio a avaliação de localização, produto e desenvolvimento;
+- apoio à avaliação de localização, produto e desenvolvimento;
 - entrega técnica e editorial no mesmo fluxo.
 
 ## Ferramentas
