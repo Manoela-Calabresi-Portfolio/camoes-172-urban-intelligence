@@ -4,7 +4,11 @@ Versão em português-BR do projeto **Camões 172 — Urban Intelligence Pipelin
 
 ## O que este caso é
 
-Sistema geoespacial de ponta a ponta para apoiar decisões de localização, produto e posicionamento urbano. O projeto integra dados territoriais, mercado imobiliário e regras urbanas em uma mesma estrutura analítica.
+Sistema geoespacial de ponta a ponta para apoiar decisões de localização, produto e posicionamento urbano. O projeto integra dados territoriais, mercado imobiliário e regras urbanas em uma mesma estrutura analítica, organizada para virar WebGIS e dossiê de decisão.
+
+## Pergunta central
+
+Como transformar dados urbanos, regulatórios, censitários e de mercado em uma leitura territorial consistente para apoiar decisões imobiliárias e urbanas em um caso real.
 
 ## O que este caso mostra
 
@@ -25,7 +29,7 @@ Sistema geoespacial de ponta a ponta para apoiar decisões de localização, pro
 - LiDAR;
 - listings de mercado.
 
-## Fluxo
+## Fluxo do sistema
 
 ```mermaid
 flowchart LR
@@ -36,33 +40,78 @@ flowchart LR
     C --> F[Decisão locacional e produto]
 ```
 
-## Componentes principais
+## 1. Banco espacial
 
-### Banco espacial
+O banco separa ingestão, referência, análise e motor paramétrico de zoneamento em esquemas distintos. Isso permite atualizar mercado, geometrias e visões analíticas sem confundir funções ou corromper histórico.
 
-Separação por esquemas para ingestão, referência, análise e motor paramétrico de zoneamento.
+![Estrutura do banco e normalização de zoneamento](https://github.com/user-attachments/assets/cc7cadad-9dac-464c-91fd-e01854626077)
 
-### Engenharia de pipeline
+O que este bloco entrega:
 
-Fluxo HOT/COLD para atualização de listings, camadas geoespaciais e artefatos analíticos.
+- organização robusta em PostGIS;
+- separação entre dados frios, dinâmicos e derivados;
+- base para regras de zoneamento e leitura analítica.
 
-### Integração geoespacial
+## 2. Engenharia de pipeline
 
-Cruzamento de dados cadastrais, zoneamento, OSM, censo, LiDAR e mercado em CRS padronizado.
+O sistema opera com lógica HOT/COLD. Listings entram por pipeline próprio, com contrato de snapshot e UPSERT; camadas geoespaciais entram por reposição controlada, com dependências explicitamente recriadas.
 
-### WebGIS e entrega
+![Fluxo de pipeline e coleta](https://github.com/user-attachments/assets/083472a4-7c8e-4f90-afcd-cd45ad0bbb0e)
 
-Publicação das camadas em visualizador navegável e dossiê editorial para leitura do caso.
+O que este bloco entrega:
 
-### Inteligência urbana e imobiliária
+- atualização confiável de dados de mercado;
+- separação entre coleta e reprocessamento;
+- pipeline repetível para novos ciclos de análise.
 
-Leitura de cenários de produto, submercado, envelope regulatório e tensões de mercado.
+## 3. Integração geoespacial
 
-## Resultado
+O caso combina fontes heterogêneas com formatos, CRS e periodicidades diferentes. Tudo entra em CRS padronizado e passa a conversar em uma mesma base espacial.
+
+![Integração entre fontes geoespaciais](https://github.com/user-attachments/assets/072d0853-b4a2-42ee-a79d-e10ef5477599)
+
+Fontes que entram aqui:
+
+- cadastro e zoneamento municipais;
+- IBGE/SIDRA para renda, domicílio e escolaridade;
+- OSM para rede, POIs e edificações;
+- LiDAR para modelagem de alturas;
+- mercado para leitura de preço, oferta e produto.
+
+## 4. WebGIS e entrega ao cliente
+
+O resultado não fica só no banco. As camadas analíticas viram visualizador navegável e dossiê editorial para leitura do caso.
+
+![WebGIS Camões 172 · vista 1](https://github.com/user-attachments/assets/d6c2b30b-e13e-4df0-a25b-7050e2ca1ddb)
+
+![WebGIS Camões 172 · vista 2](https://github.com/user-attachments/assets/7ffeb968-a2c2-421e-8934-3c9ed6aee835)
+
+![WebGIS Camões 172 · vista 3](https://github.com/user-attachments/assets/0287e1f6-3ab9-4c2e-aaa5-77f9952dba4e)
+
+O que este bloco entrega:
+
+- leitura navegável do território;
+- passagem direta de análise para apresentação;
+- reutilização da mesma estrutura em novos estudos.
+
+## 5. Inteligência urbana e imobiliária
+
+O caso transforma o território em decisão. A camada analítica avalia cenários de produto, submercado, envelope regulatório, concentração econômica e tensões frente ao mercado.
+
+![Tabela de cenários e ranking](https://github.com/user-attachments/assets/14c8f5b0-43a9-48e7-92e0-1e37d22c360f)
+
+O que este bloco entrega:
+
+- leitura comparável entre território, regulação e mercado;
+- avaliação de cenários de produto;
+- apoio a localização e desenvolvimento imobiliário.
+
+## Resultado final
 
 - sistema replicável de inteligência territorial;
-- leitura comparável entre território, regulação e mercado;
-- apoio a avaliação de localização e desenvolvimento imobiliário.
+- integração entre censo, mercado e geografia urbana;
+- apoio a avaliação de localização, produto e desenvolvimento;
+- entrega técnica e editorial no mesmo fluxo.
 
 ## Ferramentas
 
